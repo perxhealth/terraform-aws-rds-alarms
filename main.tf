@@ -135,6 +135,27 @@ resource "aws_cloudwatch_metric_alarm" "memory_swap_usage_too_high" {
   tags = var.tags
 }
 
+// Read IOPS
+
+resource "aws_cloudwatch_metric_alarm" "read_iops_too_high" {
+  alarm_name          = "${var.prefix}rds-${var.db_instance_id}-highReadIOPS"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = var.evaluation_period
+  metric_name         = "ReadIOPS"
+  namespace           = "AWS/RDS"
+  period              = var.statistic_period
+  statistic           = "Average"
+  threshold           = var.read_iops_too_high_threshold
+  alarm_description   = "Average database Read IOPS is too high."
+  alarm_actions       = var.actions_alarm
+  ok_actions          = var.actions_ok
+
+  dimensions = {
+    DBInstanceIdentifier = var.db_instance_id
+  }
+  tags = var.tags
+}
+
 // Connection Count
 resource "aws_cloudwatch_metric_alarm" "connection_count_anomalous" {
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-anomalousConnectionCount"

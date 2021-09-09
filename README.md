@@ -16,6 +16,7 @@ Alarms Always Created (default values can be overridden):
 - Freeable memory below 256 MB
 - Swap usage above 256 MB
 - Anomalous connection count
+- Read IOPS above 25
 
 If the instance type is a T-Series instance type (automatically determind), the following alarms are also created:
 - CPU Credit Balance below 100
@@ -72,6 +73,7 @@ module "aws-rds-alarms" {
 | disk_burst_balance_too_low_threshold | Alarm threshold for the 'lowEBSBurstBalance' alarm | `string` | `"100"` | no |
 | memory_freeable_too_low_threshold | Alarm threshold for the 'lowFreeableMemory' alarm (in bytes) | `string` | `"256000000"` | no |
 | memory_swap_usage_too_high_threshold | Alarm threshold for the 'highSwapUsage' alarm (in bytes) | `string` | `"256000000"` | no |
+| read_iops_too_high_threshold | Alarm threshold for the 'readIOPS' alarm (in units) | `string` | `"25"` | no |
 
 ## Outputs
 
@@ -85,3 +87,4 @@ module "aws-rds-alarms" {
 | alarm\_disk\_queue\_depth\_too\_high | The CloudWatch Metric Alarm resource block for high Disk Queue Depth |
 | alarm\_memory\_freeable\_too\_low | The CloudWatch Metric Alarm resource block for low Freeable Memory |
 | alarm\_memory\_swap\_usage\_too\_high | The CloudWatch Metric Alarm resource block for high Memory Swap Usage |
+| alarm\_read\_iops\_too\_high | The CloudWatch Metric Alarm resource block for high Read IOPS |

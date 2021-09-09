@@ -37,3 +37,8 @@ output "alarm_connection_count_anomalous" {
   value       = aws_cloudwatch_metric_alarm.connection_count_anomalous
   description = "The CloudWatch Metric Alarm resource block for anomalous Connection Count"
 }
+
+output "alarm_read_iops_too_high" {
+  value       = aws_cloudwatch_metric_alarm.read_iops_too_high
+  description = "The CloudWatch Metric Alarm resource block for read IOPS"
+}

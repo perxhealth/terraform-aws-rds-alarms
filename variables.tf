@@ -40,7 +40,7 @@ variable "actions_alarm" {
 }
 
 variable "actions_ok" {
-  type        = list
+  type        = list(string)
   default     = []
   description = "A list of actions to take when alarms are cleared. Will likely be an SNS topic for event distribution."
 }
@@ -49,6 +49,12 @@ variable "cpu_utilization_too_high_threshold" {
   type        = string
   default     = "90"
   description = "Alarm threshold for the 'highCPUUtilization' alarm"
+}
+
+variable "read_iops_too_high_threshold" {
+  type        = string
+  default     = "25"
+  description = "Alarm threshold for the 'readIOPS' alarm"
 }
 
 variable "cpu_credit_balance_too_low_threshold" {
